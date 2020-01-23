@@ -1,6 +1,9 @@
 # vueminton-tracker
 
 ## Project setup
+Built upon vue-cli
+
+
 ```
 npm install
 ```

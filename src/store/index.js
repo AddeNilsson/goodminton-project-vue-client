@@ -1,15 +1,41 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import * as actions from './actions';
+import initialState from './initialState';
+
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
+  state: initialState,
+  getters: {
+    user(state) {
+      return state.user;
+    },
   },
   mutations: {
+    SET_USER(state, data) {
+      state.user = data;
+    },
+    SET_USER_DATA(state, data) {
+      state.userData = data;
+    },
+    SET_USERS_DATA(state, data) {
+      state.users = data;
+    },
   },
   actions: {
-  },
-  modules: {
+    ...actions,
   },
 });
+
+/* TODOD: namespace with modules ?
+import userstore from './userStore';
+
+export default new Vuex.Store({
+  modules: {
+    user: userStore,
+  },
+});
+*/
