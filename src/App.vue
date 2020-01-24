@@ -8,6 +8,7 @@
     >
       <navigation></navigation>
     </drawer>
+    <alert-box></alert-box>
     <router-view></router-view>
   </div>
 </template>
@@ -16,6 +17,7 @@
 import AppHeader from './components/AppHeader.vue';
 import Drawer from './components/Drawer.vue';
 import Navigation from './components/Navigation.vue';
+import AlertBox from './components/Alert';
 
 export default {
   name: 'App',
@@ -26,6 +28,7 @@ export default {
     AppHeader,
     Drawer,
     Navigation,
+    AlertBox,
   },
   methods: {
     handleMenu() {
@@ -134,7 +137,6 @@ export default {
     font-size: 1.5em;
   }
   .view {
-    padding: 1em;
   }
   /* Base */
   input {

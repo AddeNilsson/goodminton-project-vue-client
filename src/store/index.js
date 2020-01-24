@@ -29,6 +29,14 @@ export default new Vuex.Store({
     RESET_LOADING(state) {
       state.loading = false;
     },
+    SET_ERROR(state, e) {
+      console.log(state, e);
+      state.error = e.message;
+    },
+    REMOVE_ERROR(state) {
+      state.error = '';
+      state.loading = false;
+    },
   },
   actions: {
     ...actions,

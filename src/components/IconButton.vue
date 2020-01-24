@@ -1,10 +1,13 @@
 <template lang="html">
-  <button @click="$emit('handleClick')"><slot /></button>
+  <button :disabled="disabled" @click="$emit('handleClick')"><slot /></button>
 </template>
 
 <script>
 export default {
   name: 'IconButton',
+  props: {
+    disabled: Boolean,
+  },
 };
 
 </script>

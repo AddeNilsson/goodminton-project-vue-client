@@ -15,4 +15,5 @@ export default {
     userName: '',
   },
   users: [],
+  error: '',
 };

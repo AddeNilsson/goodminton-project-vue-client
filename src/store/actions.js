@@ -57,7 +57,7 @@ export const onUsersDataChange = ({ commit }) => {
   });
 };
 
-export const register = ({ getters }, data) => {
+export const register = ({ getters, commit }, data) => {
   const { uid } = getters.user;
   db.ref(`users/${uid}`)
     .set(data.payload)
@@ -82,7 +82,10 @@ export const register = ({ getters }, data) => {
           reverted: 0,
         });
     })
-    .catch((e) => { console.log(e); });
+    .catch((e) => {
+      console.log(e);
+      commit('SET_ERROR', e);
+    });
 };
 
 export const signOut = () => auth.signOut();
@@ -114,7 +117,10 @@ export const signUp = ({ commit }, payload) => {
           commit('RESET_LOADING');
         });
     })
-    .catch((e) => { console.error(e); });
+    .catch((e) => {
+      console.error(e);
+      commit('SET_ERROR', e);
+    });
 };
 
 export const signIn = ({ commit }, { email, psw }) => {
@@ -123,7 +129,14 @@ export const signIn = ({ commit }, { email, psw }) => {
     .then(() => {
       commit('RESET_LOADING');
     })
-    .catch((e) => { console.error(e); });
+    .catch((e) => {
+      console.error(e);
+      commit('SET_ERROR', e);
+    });
+};
+
+export const removeError = ({ commit }) => {
+  commit('REMOVE_ERROR');
 };
 
 /* TODO
