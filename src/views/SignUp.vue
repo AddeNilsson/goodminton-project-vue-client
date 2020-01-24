@@ -5,8 +5,8 @@
         <card>
           <card-content>
             <form class="form flex flex-column" @submit.prevent>
-              <label for="username">Username</label>
-              <input id="username" v-model="username" />
+              <label for="user-name">Username</label>
+              <input id="user-name" v-model="userName" />
               <label for="email">Email</label>
               <input id="email" v-model="email" />
               <label for="psw">Password</label>
@@ -16,7 +16,6 @@
                 id="psw-confirm"
                 v-model="pswConfirm"
                 type="password"
-                v-on:keypress.enter="createUserWithEmailAndPsw"
               />
               <custom-button
                 @handleClick="createUserWithEmailAndPsw"
@@ -36,18 +35,14 @@
 </template>
 
 <script>
-import { auth, db } from '../firebase';
 import CustomButton from '../components/Button.vue';
 import { Card, CardContent } from '../components/Card';
 
-const newUserBase = {
-  win: 0, loss: 0, wo: 0, total: 0,
-};
-
+console.log('Fix error handling i Vuex state');
 const SignUp = {
   name: 'SignUp',
   data: () => ({
-    username: '',
+    userName: '',
     email: '',
     psw: '',
     pswConfirm: '',
@@ -60,19 +55,8 @@ const SignUp = {
   },
   methods: {
     createUserWithEmailAndPsw() {
-      console.log('TODO: move to actions');
-      auth.createUserWithEmailAndPassword(this.email, this.psw)
-        .then((data) => {
-          data.user
-            .updateProfile({
-              displayName: this.username,
-            })
-            .then(() => {
-              db.ref(`users/${data.user.uid}`)
-                .set({ ...newUserBase, userName: this.username });
-            });
-        })
-        .catch((e) => { this.error = e.message; });
+      const { userName, email, psw } = this;
+      this.$store.dispatch('signUp', { userName, email, psw });
     },
   },
 };

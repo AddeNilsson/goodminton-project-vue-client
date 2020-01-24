@@ -1,4 +1,5 @@
 export default {
+  loading: false,
   user: {
     loggedIn: false,
     uid: null,

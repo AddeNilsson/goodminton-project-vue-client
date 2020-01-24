@@ -80,6 +80,21 @@ export default {
   .justify-end {
     justify-content: flex-end;
   }
+  .flex-grid {
+    justify-content: space-between;
+    .col-1 { flex-basis: calc(8.34% - 8px);  }
+    .col-2 { flex-basis: calc(16.68% - 8px);  }
+    .col-3 { flex-basis: calc(25% - 8px);  }
+    .col-4 { flex-basis: calc(33.36% - 8px);  }
+    .col-5 { flex-basis: calc(41.667% - 8px);  }
+    .col-6 { flex-basis: calc(50% - 8px);  }
+    .col-7 { flex-basis: calc(58.48% - 8px);  }
+    .col-8 { flex-basis: calc(66.67% - 8px);  }
+    .col-9 { flex-basis: calc(76.92% - 8px);  }
+    .col-10 { flex-basis: calc(83.34% - 8px);  }
+    .col-11 { flex-basis: calc(91.74% - 8px);  }
+    .col-12 { flex-basis: calc(100% - 8px);  }
+  }
   .flex-grid-2 {
     justify-content: space-between;
     .col {

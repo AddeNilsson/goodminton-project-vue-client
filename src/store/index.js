@@ -4,11 +4,10 @@ import Vuex from 'vuex';
 import * as actions from './actions';
 import initialState from './initialState';
 
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: initialState,
+  state: { ...initialState },
   getters: {
     user(state) {
       return state.user;
@@ -24,13 +23,19 @@ export default new Vuex.Store({
     SET_USERS_DATA(state, data) {
       state.users = data;
     },
+    SET_LOADING(state) {
+      state.loading = true;
+    },
+    RESET_LOADING(state) {
+      state.loading = false;
+    },
   },
   actions: {
     ...actions,
   },
 });
 
-/* TODOD: namespace with modules ?
+/* TODO: namespace with modules ?
 import userstore from './userStore';
 
 export default new Vuex.Store({

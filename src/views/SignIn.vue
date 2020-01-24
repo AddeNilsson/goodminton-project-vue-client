@@ -12,10 +12,10 @@
                 id="psw"
                 v-model="psw"
                 type="password"
-                v-on:keypress.enter="signInWithEmailAndPsw"
+                v-on:keypress.enter="handleSignIn"
               />
               <custom-button
-                @handleClick="signInWithEmailAndPsw"
+                @handleClick="handleSignIn"
                 v-bind:disabled="psw.length < 5"
                 text="Sign In"
                 blue
@@ -32,28 +32,21 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
 import { Card, CardContent } from '../components/Card';
 import CustomButton from '../components/Button.vue';
 
 const SignIn = {
   name: 'SignIn',
   data: () => ({ email: '', psw: '', error: '' }),
-  created() {
-    this.auth = firebase.auth();
-  },
   components: {
     Card,
     CustomButton,
     CardContent,
   },
   methods: {
-    signInWithEmailAndPsw() {
-      console.log('TODO: move to action and fix routing');
-      this.auth.signInWithEmailAndPassword(this.email, this.psw)
-        // redirect won't do it cuz user hasn't landed properly..
-        // .then(() => this.$router.push('dashboard'))
-        .catch((e) => { this.error = e; });
+    handleSignIn() {
+      const { email, psw } = this;
+      this.$store.dispatch('signIn', { email, psw });
     },
   },
 };

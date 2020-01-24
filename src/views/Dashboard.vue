@@ -1,90 +1,40 @@
 <template>
   <div class="home view">
-    <h1 class="text-center">Wellcome {{ user.displayName }}</h1>
     <div class="flex flex-center flex-align-start">
-      <div class="col-4">
+      <div class="col-6">
         <card>
-          <!-- img -->
           <card-image assetImage="img.jpg" top />
-          <!-- stats -->
-          <card-content>
-            <h2>Register a game!</h2>
+          <card-content v-bind:title="`Register a game ${user.displayName || ''}!`">
             <p class="text-body-alt">
               Register a game outcome using buttons or multiple games below.
               Walkover registers 6 losses. Edit / Undo registration by using the log.
             </p>
-            <p class="text-body">Win Ratio: {{ userData ? winRatio : '' }} </p>
-            <hr />
-            <div class="flex">
-              <div class="col">
-                <div class="flex">
-                  <div class="col">
-                    <span class="text-body-alt">Won: {{ userData.win }}</span>
-                  </div>
-                  <div class="col">
-                    <span>Lost: {{ userData.loss }}</span>
-                  </div>
-                </div>
-
-                <div class="flex">
-                  <div class="col">
-                    <span class="text-body-alt">Walkovers: {{ userData.wo }}</span>
-                  </div>
-                  <div class="col">
-                    <span>Games Total: {{ userData.total }}</span>
-                  </div>
-                </div>
-
-                <!-- <div class="flex">
-                  <div class="col">
-                    <span class="text-body-alt">Updated: {{ userData.updated }}</span>
-                  </div>
-                </div> -->
-                <hr />
-              </div>
+          <div v-if="!loading" class="flex flex-grid">
+            <div class="col-6">
+              <h3>Player stats</h3>
+              <player-details v-bind="userData" v-bind:winRatio="winRatio" ></player-details>
             </div>
-          </card-content>
-          <!-- buttons -->
-          <card-content>
-            <div class="flex flex-grid-3">
-              <div class="col">
-                <custom-button
-                  blue
-                  fullWidth
-                  @handleClick="registerWin"
-                >Win!</custom-button>
-              </div>
-              <div class="col">
-                <custom-button
-                  @handleClick="registerLoss"
-                  blue
-                  fullWidth
-                >Lost</custom-button>
-
-              </div>
-              <div class="col">
-                <custom-button
-                  @handleClick="registerWo"
-                  blue
-                  fullWidth
-                >Wo!</custom-button>
-              </div>
+            <div class="col-6">
+              <h3>Top 3</h3>
+              <leaderboard
+                v-bind:columns="columns"
+                v-bind:rows="users"
+                dense>
+              </leaderboard>
             </div>
-          </card-content>
-        </card>
-      </div>
-      <div class="col-3">
-        <card>
+          </div>
+          <div v-else>
+            <p>Loading...</p>
+          </div>
+        </card-content>
           <card-content>
-            <h2>Leaderboard</h2>
-            <leaderboard
-              v-bind:columns="columns"
-              v-bind:rows="users"
-              dense>
-            </leaderboard>
-            <button @click="foo">Click</button>
-            {{ userData !== null ? userData.win : '' }}
+            <button-field
+              @registerWin="registerWin"
+              @registerLoss="registerLoss"
+              @registerWo="registerWo"
+            ></button-field>
           </card-content>
+          <button @click="foo">Click</button>
         </card>
       </div>
     </div>
@@ -97,8 +47,9 @@ import { mapState } from 'vuex';
 import moment from 'moment';
 
 import { Card, CardContent, CardImage } from '../components/Card';
-import CustomButton from '../components/Button.vue';
 import Leaderboard from '../components/Leaderboard.vue';
+import ButtonField from '../components/ButtonField.vue';
+import PlayerDetails from '../components/PlayerDetails.vue';
 
 export default {
   name: 'dashboard',
@@ -109,26 +60,29 @@ export default {
     ],
   }),
   computed: {
-    ...mapState(['user', 'userData', 'users']),
+    ...mapState({
+      user: state => state.user,
+      userData: state => state.userData,
+      loading: state => state.loading,
+      users: state => state.users.slice(0, 3),
+    }),
     winRatio() {
       const { win, total } = this.userData;
       return Math.round((win / total) * 100) / 100 || 0;
     },
+    // TODO: getNewLogEntry () =>
   },
   components: {
     Card,
     CardContent,
     CardImage,
-    CustomButton,
     Leaderboard,
+    ButtonField,
+    PlayerDetails,
   },
-  updated() {
-    console.log('updated: ', this.user);
-  },
-  methods: { /* eslint-disable */
+  methods: {
     foo() {
       console.log(this);
-      console.log(this.getTime());
     },
     getTime() {
       return moment().format('YYYY-MM-DD HH:mm:ss');
@@ -146,7 +100,7 @@ export default {
         isWin: 1,
         isLoss: 0,
         isWo: 0,
-      }
+      };
       this.submit({ payload, log });
     },
     registerLoss() {
@@ -162,7 +116,7 @@ export default {
         isWin: 0,
         isLoss: 1,
         isWo: 0,
-      }
+      };
       this.submit({ payload, log });
     },
     registerWo() {
@@ -184,7 +138,7 @@ export default {
     },
     submit(payload) {
       this.$store.dispatch('register', payload);
-    }
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="view">
-    <leaderboard v-bind:columns="columnData" v-bind:rows="users" />
+    <leaderboard v-bind:columns="columnData" v-bind:rows="users.filter(u => u.ratio > 0)" />
   </div>
 </template>
 

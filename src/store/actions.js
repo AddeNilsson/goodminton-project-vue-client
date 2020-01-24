@@ -1,9 +1,15 @@
+import moment from 'moment';
+
 import { auth, db } from '../firebase';
 import initialState from './initialState';
 
-/*
-  TODO: split into namespaces ?
-*/
+const newUserBase = {
+  win: 0,
+  loss: 0,
+  wo: 0,
+  total: 0,
+};
+/* TODO: split into namespaces ? */
 
 export const fetchUser = ({ commit }, user) => {
   if (user) {
@@ -14,8 +20,9 @@ export const fetchUser = ({ commit }, user) => {
       loggedIn: true,
     });
   } else {
-    commit('SET_USER', initialState.user);
-    commit('SET_USER_DATA', initialState.userData);
+    commit('SET_USER', { ...initialState.user });
+    commit('SET_USER_DATA', { ...initialState.userData });
+    commit('SET_USERS_DATA', []);
   }
 };
 
@@ -80,13 +87,46 @@ export const register = ({ getters }, data) => {
 
 export const signOut = () => auth.signOut();
 
-export const removeListeners = ({ ...rest }, prevUser) => { // eslint-disable-line
+export const removeListeners = ({ ...rest }, prevUser) => { // eslint-disable-line no-unused-vars
   userRef(prevUser).off();
   usersRef().off();
 };
 
-/* TODO
+export const signUp = ({ commit }, payload) => {
+  const { email, psw, userName } = payload;
+  commit('SET_LOADING');
+  auth.createUserWithEmailAndPassword(email, psw)
+    .then(({ user }) => {
+      user
+        .updateProfile({
+          displayName: userName,
+        })
+        .then(() => {
+          userRef(user.uid)
+            .set({
+              ...newUserBase,
+              userName,
+              touched: moment().format('YYYY-MM-DD HH:mm:ss'),
+            });
+        })
+        .then(() => {
+          console.log('done');
+          commit('RESET_LOADING');
+        });
+    })
+    .catch((e) => { console.error(e); });
+};
 
+export const signIn = ({ commit }, { email, psw }) => {
+  commit('SET_LOADING');
+  auth.signInWithEmailAndPassword(email, psw)
+    .then(() => {
+      commit('RESET_LOADING');
+    })
+    .catch((e) => { console.error(e); });
+};
+
+/* TODO
 Auth API
 pswReset = email => this.auth.sendPasswordResetEmail(email);
 pswUpdate = password => this.auth.currentUser.updatePassword(password)
