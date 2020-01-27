@@ -6,7 +6,7 @@
       @closeDrawer="handleMenu"
       drawerTitle="Menu"
     >
-      <navigation></navigation>
+      <navigation @onNavigate="handleMenu"></navigation>
     </drawer>
     <alert-box></alert-box>
     <router-view></router-view>

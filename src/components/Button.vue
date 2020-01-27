@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '@/scss/_variables';
   button {
     padding: 8px 12px;
     font-size: 1em;
@@ -55,9 +56,9 @@ export default {
 
   }
   .blue {
-    background-color: #3f51b5;
+    background-color: $blue;
     &:hover {
-      background-color: darken(#3f51b5, 5%);
+      background-color: darken($blue, 5%);
     }
   }
   .full-width { width: 100%; }
