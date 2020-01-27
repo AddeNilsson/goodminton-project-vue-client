@@ -9,7 +9,13 @@
       <navigation @onNavigate="handleMenu"></navigation>
     </drawer>
     <alert-box></alert-box>
-    <router-view></router-view>
+    <main
+      v-bind:class="{
+        'margin-left': menuOpen
+        }"
+    >
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -41,6 +47,12 @@ export default {
 <style lang="scss">
   // TODO: Find better place for general styles && structure scss
   @import '@/scss/_variables';
+  main {
+    transition: margin .5s cubic-bezier(0, 0, .2, 1);
+  }
+  .margin-left {
+    margin-left: 350px;
+  }
   body {
     margin: 50px 0 0 0;
     padding: 0;

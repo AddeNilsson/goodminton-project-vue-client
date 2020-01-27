@@ -4,7 +4,8 @@
       <div class="col-4">
         <card>
           <card-content>
-            <form class="form flex flex-column" @submit.prevent>
+            <p v-if="loggedIn" class="text-body">You're allready signed in!</p>
+            <form v-else class="form flex flex-column" @submit.prevent>
               <label for="email">Email</label>
               <input id="email" v-model="email" />
               <label for="psw">Password</label>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import { Card, CardContent } from '../components/Card';
 import CustomButton from '../components/Button.vue';
 
@@ -42,6 +45,11 @@ const SignIn = {
     Card,
     CustomButton,
     CardContent,
+  },
+  computed: {
+    ...mapState({
+      loggedIn: state => state.user.loggedIn,
+    }),
   },
   methods: {
     handleSignIn() {

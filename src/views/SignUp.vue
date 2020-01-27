@@ -4,7 +4,9 @@
       <div class="col-4">
         <card>
           <card-content>
-            <form class="form flex flex-column" @submit.prevent>
+            <p v-if="loggedIn" class="text-body">You're allready signed in!</p>
+
+            <form v-else class="form flex flex-column" @submit.prevent>
               <label for="user-name">Username</label>
               <input id="user-name" v-model="userName" />
               <label for="email">Email</label>
@@ -35,10 +37,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import CustomButton from '../components/Button.vue';
 import { Card, CardContent } from '../components/Card';
 
-console.log('Fix error handling i Vuex state');
 const SignUp = {
   name: 'SignUp',
   data: () => ({
@@ -52,6 +55,11 @@ const SignUp = {
     Card,
     CustomButton,
     CardContent,
+  },
+  computed: {
+    ...mapState({
+      loggedIn: state => state.user.loggedIn,
+    }),
   },
   methods: {
     createUserWithEmailAndPsw() {

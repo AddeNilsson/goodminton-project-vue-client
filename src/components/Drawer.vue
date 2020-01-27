@@ -15,7 +15,7 @@
           <h4>{{ drawerTitle }}</h4>
         </div>
       </div>
-      <div v-bind:class="[{ 'fade-in': open, 'fade-out': !open }, 'slot-content']">
+      <div v-if="open">
         <slot></slot>
       </div>
     </div>
@@ -59,10 +59,6 @@ export default {
     width: 0px;
     opacity: 0;
   }
-  .hidden {
-    width: 0px;
-    left: -150px;
-  }
   .drawer {
     height: 100%;
     position: absolute;
@@ -85,15 +81,5 @@ export default {
     padding: 8px;
     box-sizing: border-box;
     color: #fff;
-  }
-  .slot-content {
-    opacity: 0;
-    transition: opacity .75s ease-in;
-  }
-  .fade-in {
-    opacity: 1;
-  }
-  .fade-out {
-    opacity: 0;
   }
 </style>
