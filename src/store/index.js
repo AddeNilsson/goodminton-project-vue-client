@@ -30,12 +30,11 @@ export default new Vuex.Store({
       state.loading -= 1;
     },
     SET_ERROR(state, e) {
-      console.log(state, e);
       state.error = e.message;
+      state.loading -= 1;
     },
     REMOVE_ERROR(state) {
       state.error = '';
-      state.loading = false;
     },
   },
   actions: {

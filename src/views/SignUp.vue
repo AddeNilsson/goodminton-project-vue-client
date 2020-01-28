@@ -8,30 +8,32 @@
               You're already signed in!
               <router-link to="/dashboard">Home</router-link>
             </p>
-
-            <form v-else class="form flex flex-column" @submit.prevent>
-              <label for="user-name">Username</label>
-              <input id="user-name" v-model="userName" />
-              <label for="email">Email</label>
-              <input id="email" v-model="email" />
-              <label for="psw">Password</label>
-              <input id="psw" v-model="psw" type="password" />
-              <label for="psw-confirm">Confirm Password</label>
-              <input
-                id="psw-confirm"
-                v-model="pswConfirm"
-                type="password"
-              />
-              <custom-button
-                @handleClick="createUserWithEmailAndPsw"
-                v-bind:disabled="psw.length < 5 || psw !== pswConfirm"
-                text="Create Account"
-                blue
-                class="text-right"
-              />
-              <router-link to="sign-in">Sign in</router-link>
-              <p>{{ error }}</p>
-            </form>
+            <div>
+              <h1>Create Account</h1>
+              <form class="form flex flex-column" @submit.prevent>
+                <label for="user-name">Username</label>
+                <input id="user-name" v-model="userName" />
+                <label for="email">Email</label>
+                <input id="email" v-model="email" />
+                <label for="psw">Password</label>
+                <input id="psw" v-model="psw" type="password" />
+                <label for="psw-confirm">Confirm Password</label>
+                <input
+                  id="psw-confirm"
+                  v-model="pswConfirm"
+                  type="password"
+                />
+                <custom-button
+                  @handleClick="createUserWithEmailAndPsw"
+                  v-bind:disabled="psw.length < 5 || psw !== pswConfirm"
+                  text="Create Account"
+                  blue
+                  class="text-right"
+                />
+                <router-link to="sign-in">Sign in</router-link>
+                <p>{{ error }}</p>
+              </form>
+            </div>
           </card-content>
         </card>
       </div>

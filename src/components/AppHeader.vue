@@ -1,15 +1,14 @@
 <template>
-  <div class="app-header flex flex-grid-3 text-white">
-    <div class="col">
+  <div class="app-header flex flex-grid text-white">
+    <div class="col-2">
       <icon-button @handleClick="$emit('toggleMenu')">
         <div class="icon text-white">&#9776;</div>
       </icon-button>
-
     </div>
-    <div class="col text-center">
+    <div class="col-8 text-center">
       <h2>Vueminton Tracker</h2>
     </div>
-    <div class="flex flex-align-center justify-end col">
+    <div class="flex flex-grid flex-align-center justify-end col-2">
       <div class="col-8 text-right">
         <p v-if="user">{{ user.displayName || '' }}</p>
       </div>

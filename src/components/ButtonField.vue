@@ -1,13 +1,13 @@
 <template lang="html">
-  <div class="flex flex-grid-3">
-    <div class="col">
+  <div class="flex flex-grid">
+    <div class="col-4">
       <custom-button
         blue
         fullWidth
         @handleClick="$emit('registerWin')"
       >Win!</custom-button>
     </div>
-    <div class="col">
+    <div class="col-4">
       <custom-button
         @handleClick="$emit('registerLoss')"
         blue
@@ -15,7 +15,7 @@
       >Lost</custom-button>
 
     </div>
-    <div class="col">
+    <div class="col-4">
       <custom-button
         @handleClick="$emit('registerWo')"
         blue

@@ -8,26 +8,31 @@
               You're already signed in!
               <router-link to="/dashboard">Home</router-link>
             </p>
-            <form v-else class="form flex flex-column" @submit.prevent>
-              <label for="email">Email</label>
-              <input id="email" v-model="email" />
-              <label for="psw">Password</label>
-              <input
-                id="psw"
-                v-model="psw"
-                type="password"
-                v-on:keypress.enter="handleSignIn"
-              />
-              <custom-button
-                @handleClick="handleSignIn"
-                v-bind:disabled="psw.length < 5"
-                text="Sign In"
-                blue
-                class="text-right"
-              />
-              <p class="text-error">{{ error }}</p>
-              <router-link to="sign-up">Sign Up!</router-link>
-            </form>
+            <div v-else>
+              <h1>Wellcome!</h1>
+              <p class="text-body-alt">
+                Please sign in below or
+                <router-link to="sign-up">Create Account</router-link>
+              </p>
+              <form class="form flex flex-column" @submit.prevent>
+                <label for="email">Email</label>
+                <input id="email" v-model="email" />
+                <label for="psw">Password</label>
+                <input
+                  id="psw"
+                  v-model="psw"
+                  type="password"
+                  v-on:keypress.enter="handleSignIn"
+                />
+                <custom-button
+                  @handleClick="handleSignIn"
+                  v-bind:disabled="psw.length < 5"
+                  text="Sign In"
+                  blue
+                  class="text-right"
+                />
+              </form>
+            </div>
           </card-content>
         </card>
       </div>
@@ -43,7 +48,7 @@ import CustomButton from '../components/Button.vue';
 
 const SignIn = {
   name: 'SignIn',
-  data: () => ({ email: '', psw: '', error: '' }),
+  data: () => ({ email: '', psw: '' }),
   components: {
     Card,
     CustomButton,
