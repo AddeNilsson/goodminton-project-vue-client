@@ -4,7 +4,10 @@
       <div class="col-4">
         <card>
           <card-content>
-            <p v-if="loggedIn" class="text-body">You're allready signed in!</p>
+            <p v-if="loggedIn" class="text-body">
+              You're already signed in!
+              <router-link to="/dashboard">Home</router-link>
+            </p>
 
             <form v-else class="form flex flex-column" @submit.prevent>
               <label for="user-name">Username</label>

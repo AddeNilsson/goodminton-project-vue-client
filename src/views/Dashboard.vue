@@ -9,7 +9,7 @@
               Register a game outcome using buttons or multiple games below.
               Walkover registers 6 losses. Edit / Undo registration by using the log.
             </p>
-          <div v-if="!loading" class="flex flex-grid">
+          <div class="flex flex-grid">
             <div class="col-6">
               <h3>Player stats</h3>
               <player-details v-bind="userData" v-bind:winRatio="winRatio" ></player-details>
@@ -23,9 +23,6 @@
               </leaderboard>
             </div>
           </div>
-          <div v-else>
-            <p>Loading...</p>
-          </div>
         </card-content>
           <card-content>
             <button-field
@@ -34,7 +31,6 @@
               @registerWo="registerWo"
             ></button-field>
           </card-content>
-          <button @click="foo">Click</button>
         </card>
       </div>
     </div>
@@ -81,9 +77,6 @@ export default {
     PlayerDetails,
   },
   methods: {
-    foo() {
-      console.log(this);
-    },
     getTime() {
       return moment().format('YYYY-MM-DD HH:mm:ss');
     },

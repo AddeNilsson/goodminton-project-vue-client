@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Landing from '../views/Landing.vue';
 import Dashboard from '../views/Dashboard.vue';
 import Leaderboards from '@/views/Leaderboards.vue';
 
@@ -10,8 +9,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'landing',
-    component: Landing,
+    name: 'home',
+    redirect: '/dashboard',
   },
   {
     path: '/dashboard',

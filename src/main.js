@@ -16,8 +16,8 @@ auth.onAuthStateChanged((user) => {
     localStorage.setItem('uid', JSON.stringify(user.uid));
     store.dispatch('onUserDataChange', user.uid);
     store.dispatch('onUsersDataChange');
-    if (router.history.current.name !== 'dashboard') {
-      router.push('dashboard'); // TODO: fix this routing, always redirect when user
+    if (!prevUser) {
+      router.push('/');
     }
   } else if (prevUser) {
     localStorage.removeItem('uid');

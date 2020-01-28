@@ -24,10 +24,10 @@ export default new Vuex.Store({
       state.users = data;
     },
     SET_LOADING(state) {
-      state.loading = true;
+      state.loading += 1;
     },
     RESET_LOADING(state) {
-      state.loading = false;
+      state.loading -= 1;
     },
     SET_ERROR(state, e) {
       console.log(state, e);

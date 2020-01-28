@@ -113,7 +113,6 @@ export const signUp = ({ commit }, payload) => {
             });
         })
         .then(() => {
-          console.log('done');
           commit('RESET_LOADING');
         });
     })

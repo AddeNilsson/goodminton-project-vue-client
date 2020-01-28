@@ -7,7 +7,9 @@
         :to="item.path"
         @click.native="$emit('onNavigate')"
       >
-        <list-item>{{ item.label }}</list-item>
+        <list-item
+          v-bind:active="item.activePath.indexOf($router.history.current.path) !== -1"
+        >{{ item.label }}</list-item>
       </router-link>
     </list>
   </div>
@@ -17,10 +19,9 @@
 import { List, ListItem } from './List';
 
 const menuData = [
-  { path: '/', label: 'Home' },
-  { path: '/dashboard', label: 'Dashboard' },
-  { path: '/leaderboards', label: 'Leaderboards' },
-  { path: '/about', label: 'About' },
+  { path: '/', label: 'Home', activePath: ['/sign-in', '/dashboard'] },
+  { path: '/leaderboards', label: 'Leaderboards', activePath: ['/leaderboards'] },
+  { path: '/about', label: 'About', activePath: ['/about'] },
 ];
 
 export default {
@@ -31,11 +32,6 @@ export default {
   components: {
     List, ListItem,
   },
-  methods: {
-    foo() {
-      console.log('clicked');
-    },
-  },
 };
 </script>
 
@@ -45,8 +41,26 @@ export default {
     font-weight: bold;
     color: #2c3e50;
     text-decoration: none;
-    &.router-link-exact-active {
-      color: $blue;
+  }
+  li {
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+    &:after {
+      position: absolute;
+      content: '';
+      height: 4px;
+      bottom: -1px;
+      margin: 0 auto;
+      left: 0;
+      width: 10px;
+      background: rgba(0, 0, 0, .2);
+      transition: width .4s ease-in-out;
+    }
+    &.active:after {
+      background: $blue;
     }
   }
 </style>

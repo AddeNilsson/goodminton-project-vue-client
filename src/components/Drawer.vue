@@ -1,29 +1,28 @@
 <template lang="html">
-  <div v-bind:class="{
-    'backdrop-show': open, 'backdrop-hide': !open,
-    }" class="drawer-backdrop">
-    <div class="drawer" v-bind:class="{
-        'show': open, 'hide': !open,
-      }">
-      <div class="drawer-header">
-        <div class="col-2">
-          <icon-button @handleClick="handleDrawerClose">
-            <div class="icon text-white">X</div>
-          </icon-button>
+    <backdrop v-bind:show="open">
+      <div class="drawer" v-bind:class="{
+          'show': open, 'hide': !open,
+        }">
+        <div class="drawer-header">
+          <div class="col-2">
+            <icon-button @handleClick="handleDrawerClose">
+              <div class="icon text-white">X</div>
+            </icon-button>
+          </div>
+          <div class="col-10">
+            <h4>{{ drawerTitle }}</h4>
+          </div>
         </div>
-        <div class="col-10">
-          <h4>{{ drawerTitle }}</h4>
+        <div v-if="open">
+          <slot></slot>
         </div>
       </div>
-      <div v-if="open">
-        <slot></slot>
-      </div>
-    </div>
-  </div>
+    </backdrop>
 </template>
 
 <script>
 import IconButton from './IconButton.vue';
+import Backdrop from './Backdrop.vue';
 
 export default {
   name: 'Drawer',
@@ -33,6 +32,7 @@ export default {
   },
   components: {
     IconButton,
+    Backdrop,
   },
   methods: {
     handleDrawerClose() {
@@ -44,21 +44,6 @@ export default {
 
 <style lang="scss" scoped>
   @import '@/scss/_variables';
-  .drawer-backdrop {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .3);
-    transition: opacity .25s cubic-bezier(0, 0, .5, 1);
-  }
-  .backdrop-show {
-    width: 100%;
-    opacity: 1;
-  }
-  .backdrop-hide {
-    width: 0px;
-    opacity: 0;
-  }
   .drawer {
     height: 100%;
     position: absolute;
