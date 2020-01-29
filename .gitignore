@@ -22,3 +22,10 @@ yarn-error.log*
 
 # config
 src/config.js
+
+### Firebase ###
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
