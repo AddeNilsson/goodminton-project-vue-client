@@ -1,20 +1,21 @@
 <template lang="html">
   <backdrop v-bind:show="active" dark>
-    <div v-if="active" class="flex flex-center align-center">
+    <grid v-if="active" row classes="flex-center align-center">
       <div class="ripple">
         <div />
         <div />
       </div>
-    </div>
+    </grid>
   </backdrop>
 </template>
 
 <script>
 import Backdrop from './Backdrop.vue';
+import Grid from './Grid.vue';
 
 export default {
   name: 'LoadingSpinner',
-  components: { Backdrop },
+  components: { Backdrop, Grid },
   props: {
     active: Boolean,
   },

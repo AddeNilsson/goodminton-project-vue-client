@@ -1,7 +1,7 @@
 <template>
   <div id="sign-in" class="view">
-    <div class="flex flex-center">
-      <div class="col-4">
+    <grid row classes="flex-center">
+      <grid :xs="12" :sm="10" :md="8" :lg="4">
         <card>
           <card-content>
             <p v-if="loggedIn" class="text-body">
@@ -9,7 +9,7 @@
               <router-link to="/dashboard">Home</router-link>
             </p>
             <div v-else>
-              <h1>Wellcome!</h1>
+              <h1>Welcome!</h1>
               <p class="text-body-alt">
                 Please sign in below or
                 <router-link to="sign-up">Create Account</router-link>
@@ -35,14 +35,15 @@
             </div>
           </card-content>
         </card>
-      </div>
-    </div>
+      </grid>
+    </grid>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
+import Grid from '../components/Grid.vue';
 import { Card, CardContent } from '../components/Card';
 import CustomButton from '../components/Button.vue';
 
@@ -53,6 +54,7 @@ const SignIn = {
     Card,
     CustomButton,
     CardContent,
+    Grid,
   },
   computed: {
     ...mapState({

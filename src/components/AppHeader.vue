@@ -1,26 +1,26 @@
 <template>
   <div class="app-header flex flex-grid text-white">
-    <div class="col-2">
+    <grid :xs="2" :md="3">
       <icon-button @handleClick="$emit('toggleMenu')">
         <div class="icon text-white">&#9776;</div>
       </icon-button>
-    </div>
-    <div class="col-8 text-center">
+    </grid>
+    <grid :md="6" classes="hide-md-down text-center">
       <h2>Vueminton Tracker</h2>
-    </div>
-    <div class="flex flex-grid flex-align-center justify-end col-2">
-      <div class="col-8 text-right">
+    </grid>
+    <grid row gutters :xs="10" :md="3" classes="flex-align-center justify-end">
+      <grid :xs="6" classes="text-right">
         <p v-if="user">{{ user.displayName || '' }}</p>
-      </div>
-      <div class="col-3 text-right">
+      </grid>
+      <grid :xs="6" classes="text-right">
         <custom-button
-        v-bind:disabled="!user.loggedIn"
-        @handleClick="signOut"
-        transparent
-        text="Sign Out"
+          v-bind:disabled="!user.loggedIn"
+          @handleClick="signOut"
+          transparent
+          text="Sign Out"
         ></custom-button>
-      </div>
-    </div>
+      </grid>
+    </grid>
   </div>
 </template>
 
@@ -29,12 +29,14 @@ import { mapState } from 'vuex';
 
 import CustomButton from './Button.vue';
 import IconButton from './IconButton.vue';
+import Grid from './Grid.vue';
 
 export default {
   name: 'AppHeader',
   components: {
     CustomButton,
     IconButton,
+    Grid,
   },
   computed: {
     ...mapState(['user']),
@@ -58,9 +60,5 @@ export default {
     background-color: $blue;
     align-items: center;
     box-sizing: border-box;
-  }
-  .menu-icon {
-    padding: 8px;
-    font-size: 1.5em;
   }
 </style>

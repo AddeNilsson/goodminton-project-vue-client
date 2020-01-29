@@ -14,9 +14,7 @@
         'margin-left': menuOpen
         }"
     >
-      <div>
-        <loading-spinner v-bind:active="loading > 0" />
-      </div>
+      <loading-spinner v-bind:active="loading > 0" />
       <router-view></router-view>
     </main>
   </div>
@@ -62,6 +60,8 @@ export default {
     transition: margin .5s cubic-bezier(0, 0, .2, 1);
   }
   .margin-left {
-    margin-left: 350px;
+    @media all and(min-width: map-get($breakpoints, "md")) {
+      margin-left: $drawer-width;
+    }
   }
 </style>

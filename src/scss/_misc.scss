@@ -4,3 +4,17 @@
   padding: 8px;
   font-size: 1.5em;
 }
+.sm-show {
+
+}
+
+.hide-sm-down {
+  @media all and (max-width: map-get($breakpoints, "sm")) {
+    display: none;
+  }
+}
+.hide-md-down {
+  @media all and (max-width: map-get($breakpoints, "md")) {
+    display: none;
+  }
+}

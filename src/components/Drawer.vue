@@ -1,28 +1,29 @@
 <template lang="html">
-    <backdrop v-bind:show="open">
-      <div class="drawer" v-bind:class="{
-          'show': open, 'hide': !open,
-        }">
-        <div class="drawer-header">
-          <div class="col-2">
-            <icon-button @handleClick="handleDrawerClose">
-              <div class="icon text-white">X</div>
-            </icon-button>
-          </div>
-          <div class="col-10">
-            <h4>{{ drawerTitle }}</h4>
-          </div>
-        </div>
-        <div v-if="open">
-          <slot></slot>
-        </div>
+  <backdrop v-bind:show="open">
+    <div class="drawer" v-bind:class="{
+        'show': open, 'hide': !open,
+      }">
+      <grid v-if="open" row gutters classes="drawer-header flex-align-center">
+        <grid :xs="2">
+          <icon-button @handleClick="handleDrawerClose">
+            <div class="icon text-white">X</div>
+          </icon-button>
+        </grid>
+        <grid :xs="10">
+          <h4>{{ drawerTitle }}</h4>
+        </grid>
+      </grid>
+      <div v-if="open">
+        <slot></slot>
       </div>
-    </backdrop>
+    </div>
+  </backdrop>
 </template>
 
 <script>
 import IconButton from './IconButton.vue';
 import Backdrop from './Backdrop.vue';
+import Grid from './Grid.vue';
 
 export default {
   name: 'Drawer',
@@ -33,6 +34,7 @@ export default {
   components: {
     IconButton,
     Backdrop,
+    Grid,
   },
   methods: {
     handleDrawerClose() {
@@ -55,14 +57,11 @@ export default {
     width: 0px;
   }
   .show {
-    width: 350px;
+    width: $drawer-width;
   }
   .drawer-header {
     height: $header-hight;
     background-color: $blue;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 8px;
     box-sizing: border-box;
     color: #fff;

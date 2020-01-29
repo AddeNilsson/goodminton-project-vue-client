@@ -24,6 +24,7 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, .3);
   transition: opacity .25s cubic-bezier(0, 0, .5, 1);
+  z-index: 1; // override disabled buttons
 }
 .backdrop-show {
   width: 100%;

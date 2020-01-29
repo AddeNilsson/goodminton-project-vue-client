@@ -1,7 +1,7 @@
 <template>
   <div id="sign-up" class="view">
-    <div class="flex flex-center">
-      <div class="col-4">
+    <grid row classes="flex-center">
+      <grid :xs="12" :sm="10" :md="8" :lg="4">
         <card>
           <card-content>
             <p v-if="loggedIn" class="text-body">
@@ -36,8 +36,8 @@
             </div>
           </card-content>
         </card>
-      </div>
-    </div>
+      </grid>
+    </grid>
   </div>
 </template>
 
@@ -46,6 +46,7 @@ import { mapState } from 'vuex';
 
 import CustomButton from '../components/Button.vue';
 import { Card, CardContent } from '../components/Card';
+import Grid from '../components/Grid.vue';
 
 const SignUp = {
   name: 'SignUp',
@@ -60,6 +61,7 @@ const SignUp = {
     Card,
     CustomButton,
     CardContent,
+    Grid,
   },
   computed: {
     ...mapState({

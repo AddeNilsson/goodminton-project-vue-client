@@ -8,7 +8,7 @@
         ['col-sm-' + sm]: sm > 0,
         ['col-md-' + md]: md > 0,
         ['col-lg-' + lg]: lg > 0,
-        'child': !row,
+        ['col-xl-' + xl]: xl > 0,
         }, classes]"
      ><slot></slot></div>
 </template>
@@ -22,6 +22,7 @@ export default {
     sm: Number,
     md: Number,
     lg: Number,
+    xl: Number,
     row: Boolean,
     gutters: Boolean,
     classes: String,

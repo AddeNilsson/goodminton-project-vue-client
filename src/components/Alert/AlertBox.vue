@@ -1,25 +1,27 @@
 <template lang="html">
-  <div class="flex flex-center">
-    <div class="col-3">
+  <grid row classes="flex-center">
+    <grid :xs="12" :sm="10" :md="8" :lg="4">
       <div
         v-bind:class="[{'show': message, 'hide': !message }]"
         class="alert-box flex flex-center"
       >
-        <div class="col-10 text-center">
+      <grid :xs="1"></grid>
+        <grid :xs="10" classes="text-center">
           <span class="text-body error-text" >{{ message }}</span>
-        </div>
-        <div class="col-2 text-right">
+        </grid>
+        <grid :xs="1" classe="text-right">
           <icon-button v-if="message" v-bind:disabled="!message" @handleClick="handleHideClick">
             <div class="icon text-white">X</div>
           </icon-button>
-        </div>
+        </grid>
       </div>
-    </div>
-  </div>
+    </grid>
+  </grid>
 </template>
 
 <script>
 import IconButton from '../IconButton.vue';
+import Grid from '../Grid.vue';
 
 export default {
   name: 'AlertBox',
@@ -31,6 +33,7 @@ export default {
   }),
   components: {
     IconButton,
+    Grid,
   },
   watch: {
     message(newMsg) {
@@ -57,7 +60,7 @@ export default {
     background-color: #f44336;
     color: #fff;
     padding: 8px 16px;
-    height: 1.5em;
+    min-height: 1.5em;
     border-radius: 4px;
     margin: .2em 0;
     opacity: 0;
