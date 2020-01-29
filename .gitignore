@@ -25,6 +25,7 @@ src/config.js
 
 ### Firebase ###
 **/.firebaserc
+database.rules.json
 
 ### Firebase Patch ###
 .runtimeconfig.json

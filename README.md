@@ -1,32 +1,5 @@
-# vueminton-tracker
+This project is deployed [Here](https://goodminton-dev.web.app/) and it's purpose is to be viewed upon as a badminton playing frontend developers way to get into Vue.js.
 
-## Project setup
-Built upon vue-cli
+Another version, written in React with material-ui, is to be found [Here](https://github.com/Dopethroned/goodminton-tracker)
 
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This project is built upon vue-cli with firebase

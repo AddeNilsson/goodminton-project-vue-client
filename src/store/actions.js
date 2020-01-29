@@ -83,7 +83,6 @@ export const register = ({ getters, commit }, data) => {
         });
     })
     .catch((e) => {
-      console.log(e);
       commit('SET_ERROR', e);
     });
 };
@@ -117,7 +116,6 @@ export const signUp = ({ commit }, payload) => {
         });
     })
     .catch((e) => {
-      console.error(e);
       commit('SET_ERROR', e);
     });
 };
@@ -129,7 +127,6 @@ export const signIn = ({ commit }, { email, psw }) => {
       commit('RESET_LOADING');
     })
     .catch((e) => {
-      console.error(e);
       commit('SET_ERROR', e);
     });
 };

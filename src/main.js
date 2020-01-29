@@ -8,7 +8,6 @@ import { auth } from './firebase';
 Vue.config.productionTip = false;
 
 auth.onAuthStateChanged((user) => {
-  console.log(user);
   store.dispatch('fetchUser', user);
   const prevUser = localStorage.getItem('uid'); // store.dispatch('user/fetchUser', user); // namespaced
 
