@@ -29,7 +29,6 @@ import Navigation from './components/Navigation.vue';
 import AlertBox from './components/Alert';
 import LoadingSpinner from './components/LoadingSpinner.vue';
 
-console.log('TODO: deployment, responsive styles, log actions, structure css, about page content');
 export default {
   name: 'App',
   data: () => ({
