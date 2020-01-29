@@ -1,5 +1,16 @@
 <template>
   <div class="grid-sample">
+
+<grid row gutters classes="text-right">
+    <grid v-bind:xs="10" v-bind:lg="2" v-bind:md="6" v-bind:sm="8">
+      XXXXX
+    </grid>
+    <grid v-bind:xs="2" v-bind:sm="4" :md="6" :lg="10">
+      YYYYYYY
+    </grid>
+</grid>
+
+    <hr />
     <div class="flex">
       <div class="col-1">
         <card>1</card>
@@ -109,11 +120,12 @@
 
 <script>
 import { Card } from '../components/Card';
+import Grid from '../components/Grid.vue';
 
 export default {
   name: 'gridSample',
   components: {
-    Card,
+    Card, Grid,
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template lang="html">
   <backdrop v-bind:show="active" dark>
-    <div class="flex flex-center align-center">
+    <div v-if="active" class="flex flex-center align-center">
       <div class="ripple">
         <div />
         <div />
