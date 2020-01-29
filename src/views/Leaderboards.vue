@@ -1,22 +1,21 @@
 <template lang="html">
-  <div class="view">
-    <div class="flex flex-center">
-      <div class="col-8">
-        <leaderboard v-bind:columns="columnData" v-bind:rows="users.filter(u => u.ratio > 0)" />
-      </div>
-    </div>
-  </div>
+  <grid row classes="flex-center table">
+    <grid :xs="12" :md="10" >
+      <leaderboard v-bind:columns="columnData" v-bind:rows="users.filter(u => u.ratio > 0)" />
+    </grid>
+  </grid>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 import Leaderboard from '../components/Leaderboard.vue';
+import Grid from '../components/Grid.vue';
 
 export default {
   name: 'Leaderboards',
   components: {
-    Leaderboard,
+    Leaderboard, Grid,
   },
   data: () => ({
     columnData: [
@@ -38,4 +37,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 </style>

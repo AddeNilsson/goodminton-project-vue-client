@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div>
     <ul v-if="items && items.length > 0">
       <list-item
         v-for="item in items"

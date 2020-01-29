@@ -47,11 +47,6 @@ const routes = [
     name: 'signUp',
     component: () => import('../views/SignUp.vue'),
   },
-  {
-    path: '/grid',
-    name: 'grid',
-    component: () => import('../views/GridSample.vue'),
-  },
 ];
 
 const router = new VueRouter({

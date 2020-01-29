@@ -1,6 +1,6 @@
 <template>
-  <div class="home flex flex-center">
-    <div class="col-4">
+   <grid row classes="flex-center">
+     <grid :xs="12" :sm="10" :md="8" :lg="6" :xl="5">
       <card>
         <card-content>
           <h1>About</h1>
@@ -19,17 +19,18 @@
           </p>
         </card-content>
       </card>
-    </div>
-  </div>
+    </grid>
+  </grid>
 </template>
 
 <script>
 import { Card, CardContent } from '../components/Card';
+import Grid from '../components/Grid.vue';
 
 export default {
   name: 'home',
   components: {
-    Card, CardContent,
+    Card, CardContent, Grid,
   },
 };
 </script>

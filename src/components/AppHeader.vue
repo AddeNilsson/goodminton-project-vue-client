@@ -1,5 +1,5 @@
 <template>
-  <div class="app-header flex flex-grid text-white">
+  <grid row gutters classes="app-header text-white">
     <grid :xs="2" :md="3">
       <icon-button @handleClick="$emit('toggleMenu')">
         <div class="icon text-white">&#9776;</div>
@@ -8,20 +8,18 @@
     <grid :md="6" classes="hide-md-down text-center">
       <h2>Vueminton Tracker</h2>
     </grid>
-    <grid row gutters :xs="10" :md="3" classes="flex-align-center justify-end">
-      <grid :xs="6" classes="text-right">
+    <grid row :xs="10" :md="3" classes="flex-align-center justify-end">
+      <div class="margin-side">
         <p v-if="user">{{ user.displayName || '' }}</p>
-      </grid>
-      <grid :xs="6" classes="text-right">
-        <custom-button
-          v-bind:disabled="!user.loggedIn"
-          @handleClick="signOut"
-          transparent
-          text="Sign Out"
-        ></custom-button>
-      </grid>
+      </div>
+      <custom-button
+        v-bind:disabled="!user.loggedIn"
+        @handleClick="signOut"
+        transparent
+        text="Sign Out"
+      ></custom-button>
     </grid>
-  </div>
+  </grid>
 </template>
 
 <script>

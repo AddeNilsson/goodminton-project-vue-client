@@ -1,7 +1,7 @@
 <template>
   <div class="home view">
     <div class="flex flex-center flex-align-start">
-      <div class="col-6">
+      <grid :xs="12" :sm="10" :md="8" :lg="6" :xl="5">
         <card>
           <card-image assetImage="img.jpg" top />
           <card-content v-bind:title="`Register a game ${user.displayName || ''}!`">
@@ -9,21 +9,21 @@
               Register a game outcome using buttons or multiple games below.
               Walkover registers 6 losses. Edit / Undo registration by using the log.
             </p>
-          <div class="flex flex-grid">
-            <div class="col-6">
-              <h3>Player stats</h3>
-              <player-details v-bind="userData" v-bind:winRatio="winRatio" ></player-details>
-            </div>
-            <div class="col-6">
-              <h3>Top 3</h3>
-              <leaderboard
-                v-bind:columns="columns"
-                v-bind:rows="users"
-                dense>
-              </leaderboard>
-            </div>
-          </div>
-        </card-content>
+            <grid row gutters classes="flex-wrap">
+              <grid :xs="12" :md="6">
+                <h3>{{ userData.userName }} stats</h3>
+                <player-details v-bind="userData" v-bind:winRatio="winRatio" ></player-details>
+              </grid>
+              <grid :xs="12" :md="6">
+                <h3>Top 3</h3>
+                <leaderboard
+                  v-bind:columns="columns"
+                  v-bind:rows="users"
+                  dense>
+                </leaderboard>
+              </grid>
+            </grid>
+          </card-content>
           <card-content>
             <button-field
               @registerWin="registerWin"
@@ -32,7 +32,7 @@
             ></button-field>
           </card-content>
         </card>
-      </div>
+      </grid>
     </div>
   </div>
 </template>
@@ -46,6 +46,7 @@ import { Card, CardContent, CardImage } from '../components/Card';
 import Leaderboard from '../components/Leaderboard.vue';
 import ButtonField from '../components/ButtonField.vue';
 import PlayerDetails from '../components/PlayerDetails.vue';
+import Grid from '../components/Grid.vue';
 
 export default {
   name: 'dashboard',
@@ -75,6 +76,7 @@ export default {
     Leaderboard,
     ButtonField,
     PlayerDetails,
+    Grid,
   },
   methods: {
     getTime() {

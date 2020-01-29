@@ -4,9 +4,6 @@
   padding: 8px;
   font-size: 1.5em;
 }
-.sm-show {
-
-}
 
 .hide-sm-down {
   @media all and (max-width: map-get($breakpoints, "sm")) {
@@ -17,4 +14,17 @@
   @media all and (max-width: map-get($breakpoints, "md")) {
     display: none;
   }
+}
+
+.debug {
+  border: 1px solid hotpink;
+  min-height: 1em;
+}
+
+.margin {
+  margin: 8px;
+}
+
+.margin-side {
+  margin: 0 8px;
 }
