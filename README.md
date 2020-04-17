@@ -1,5 +1,13 @@
-This project is deployed [Here](https://goodminton-dev.web.app/) and it's purpose is to be viewed upon as a badminton playing frontend developers way to get into Vue.js.
+# Goodminton Project: Vue Client
 
-Another version, written in React with material-ui, is to be found [Here](https://github.com/Dopethroned/goodminton-tracker)
+Creating the client with Vue and calling a Firebase backend. Deployment with Firebase hosting
 
-This project is built upon vue-cli with firebase
+---
+#### The Goodminton Project :boom:
+Writing a simple application in bunch of different ways using different technologies for the sake of learning.
+
+The main application can be visited [Here](https://goodminton-tracker.firebaseapp.com) & several other versions is to be found among my [repositories](https://github.com/AddeNilsson)
+
+---
+
+This project was bootstrapped using vue-cli
